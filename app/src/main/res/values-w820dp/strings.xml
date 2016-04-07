@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Reminder</string>
+    <string name="action_list">Reminder List</string>
+    <string name="location_hint">Enter the desired location</string>
+    <string name="title_hint">Enter Title</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+</resources>

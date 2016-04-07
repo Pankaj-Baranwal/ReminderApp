@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/daily"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Repeat Daily"/>
+    <Button
+        android:id="@+id/weekly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Repeat Weekly"/>
+    <Button
+        android:id="@+id/monthly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Repeat Monthly"/>
+    <Button
+        android:id="@+id/yearly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Repeat Yearly"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel"/>
+</LinearLayout>
