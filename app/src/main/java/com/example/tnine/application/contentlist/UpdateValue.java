@@ -111,7 +111,7 @@ public class UpdateValue extends AppCompatActivity {
             this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
             String title_txt=cursor.getString(cursor.getColumnIndex(DBManipulation.TITLE));
             String place_txt=cursor.getString(cursor.getColumnIndex(DBManipulation.COUNTRY));
-            openButton.setText(place_txt.substring(0, (place_txt.contains(",") ?place_txt.indexOf(-1):place_txt.length())));
+            openButton.setText(place_txt.substring(0, (place_txt.contains(",")?place_txt.indexOf(","):place_txt.length())));
             Date time_date=new Date(Long.parseLong(cursor.getString(cursor.getColumnIndex(DBManipulation.TIMESCHEDULED))));
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
             String dates=dateFormat.format(time_date);
