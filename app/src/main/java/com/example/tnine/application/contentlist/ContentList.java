@@ -71,8 +71,8 @@ public class ContentList extends AppCompatActivity {
                     TextView tv=(TextView) view;
                     String text=cursor.getString(cursor.getColumnIndex("TIMESCHEDULED"));
                     tv.setText("");
-                    text.replace(", ", " ")
-                            .replace(",", " ");
+                    text=text.replace(", ", " ");
+                    text=text.replace(",", " ");
                     long date;
                     int i=0;
                     while (i<text.length()){
@@ -110,8 +110,10 @@ public class ContentList extends AppCompatActivity {
          menu.setHeaderTitle("Select The Action");
          menu.add(0, v.getId(), 0, "Delete");
          menu.add(0, v.getId(), 0, "Modify");
-         //menu.add(0, v.getId(), 0, "Repeat");
+         menu.add(0, v.getId(), 0, "Repeat");
      }
+
+
 	 @Override
      public boolean onContextItemSelected(MenuItem item)
      { 
@@ -125,7 +127,7 @@ public class ContentList extends AppCompatActivity {
 
          final Cursor cursor=databaseAdapter.getAllEntries();
          cursor.moveToPosition(position);
-         int id=Integer.parseInt(cursor.getString(cursor.getColumnIndex("_id")));
+         final int id=Integer.parseInt(cursor.getString(cursor.getColumnIndex("_id")));
                     
          if(item.getTitle()=="Delete")
          {
@@ -148,9 +150,7 @@ public class ContentList extends AppCompatActivity {
              dialog1.setTitle("Repeat Alarm");
              Button daily=(Button)dialog1.findViewById(R.id.daily);
              Button weekly=(Button)dialog1.findViewById(R.id.weekly);
-             Button monthly=(Button)dialog1.findViewById(R.id.monthly);
-             Button yearly=(Button)dialog1.findViewById(R.id.yearly);
-
+             //Button yearly=(Button)dialog1.findViewById(R.id.yearly);
              Button cancel_dialog = (Button) dialog1.findViewById(R.id.cancel);
              cancel_dialog.setOnClickListener(new View.OnClickListener() {
                  @Override
@@ -162,22 +162,15 @@ public class ContentList extends AppCompatActivity {
              daily.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-/*                     databaseAdapter.insertEntry(rTitle, pAdd, repeat, alarmOffset);
-                     databaseAdapter.close();
-                     long timer = cursor.getColumnIndex();
-                     long nextUpdateTimeMillis = timer + 525600 * DateUtils.MINUTE_IN_MILLIS;
-                     String title= cursor.getString(cursor.getColumnIndex(databaseAdapter.TITLE));
-                     String country=cursor.getString(cursor.getColumnIndex(databaseAdapter.COUNTRY));
-                     String repeat=cursor.getString(cursor.getColumnIndex(databaseAdapter.REPEAT));
-                     databaseAdapter.updateEntry(title, country, repeat, nextUpdateTimeMillis, id);
-                     r.stop();
-                     v.cancel();
-                     obj.schedulealarm();
-                     getActivity().finish();
-                     ScheduleAlarm obj = new ScheduleAlarm(getApplicationContext());
-                     obj.schedulealarm();
-                     Toast.makeText(getApplicationContext(), "Alarm Scheduled successfully. " + getDate(alarmOffset), Toast.LENGTH_SHORT).show();
-                     */
+                     databaseAdapter.updateEntry(cursor.getString(cursor.getColumnIndex("TITLE")), cursor.getString(cursor.getColumnIndex("COUNTRY")), 1000 * 60 * 60 * 24 + "", cursor.getLong(cursor.getColumnIndex("TIMESCHEDULED")), id);
+                     schedulealarm();
+                 }
+             });
+             weekly.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+                     databaseAdapter.updateEntry(cursor.getString(cursor.getColumnIndex("TITLE")), cursor.getString(cursor.getColumnIndex("COUNTRY")), 1000 * 60 * 60 * 24 * 7 + "", cursor.getLong(cursor.getColumnIndex("TIMESCHEDULED")), id);
+                     schedulealarm();
                  }
              });
          }
@@ -185,6 +178,14 @@ public class ContentList extends AppCompatActivity {
              return false;
          return true;
      }
+
+    void schedulealarm()
+    {
+        ScheduleAlarm obj = new ScheduleAlarm(getApplicationContext());
+        obj.schedulealarm();
+        Toast.makeText(getApplicationContext(), "Alarm Repeat Set", Toast.LENGTH_SHORT).show();
+        finish();
+    }
 
     @Override
     public void onBackPressed() {

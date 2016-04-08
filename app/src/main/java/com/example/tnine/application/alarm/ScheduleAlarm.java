@@ -48,7 +48,11 @@ public class ScheduleAlarm{
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         //set the alarm for particular time
-        alarmManager.set(AlarmManager.RTC_WAKEUP, scheduledtime, PendingIntent.getActivity(context, 1, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
+        if (cursor.getString(cursor.getColumnIndex("REPEAT")).length()<2)
+            alarmManager.set(AlarmManager.RTC_WAKEUP, scheduledtime, PendingIntent.getActivity(context, 1, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
+        else
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, scheduledtime, Integer.parseInt(cursor.getString(cursor.getColumnIndex("REPEAT"))), PendingIntent.getActivity(context, 1, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
+
         databaseAdapter.close();
         Toast.makeText(context, "Alarm Scheduled!!!", Toast.LENGTH_SHORT).show();
     }

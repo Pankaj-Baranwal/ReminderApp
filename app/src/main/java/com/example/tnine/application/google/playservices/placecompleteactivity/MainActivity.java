@@ -493,7 +493,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Alarm Scheduled successfully. " + getDate(alarmOffset), Toast.LENGTH_SHORT).show();
 
             finish();
-
     }
 
     @Override
