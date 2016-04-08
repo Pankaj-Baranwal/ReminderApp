@@ -76,7 +76,6 @@ public class ContentList extends AppCompatActivity {
                     long date;
                     int i=0;
                     while (i<text.length()){
-                        Log.e("Pankaj", "panlakj");
                         if (text.indexOf(" ", i)<0) {
                             date = Long.parseLong(text.substring(i, text.length()));
                             Date time_txt =new Date(date);

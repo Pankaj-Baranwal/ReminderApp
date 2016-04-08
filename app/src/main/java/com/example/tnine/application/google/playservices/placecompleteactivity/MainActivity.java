@@ -199,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 String pId= place.getId();
                 pAdd=(place.getAddress()).toString();
                 text1.setText(pName);
+                openButton.setText(pName);
 
                 //Get Place Details using Place ID
                 try {
