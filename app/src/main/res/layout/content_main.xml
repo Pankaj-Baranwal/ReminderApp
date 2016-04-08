@@ -13,226 +13,227 @@
     tools:context="com.example.tnine.application.google.playservices.placecompleteactivity.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/location"
+            android:hint="@string/location_hint"
+            android:textColor="@color/textcolor"
+            android:textColorHint="@color/textcolor"
+            android:layout_margin="5dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edittext"
+            android:hint="@string/title_hint"
+            android:textColorHint="@color/textcolor"
+            android:textColor="@color/textcolor"
+            android:layout_margin="5dp"
+            android:layout_below="@+id/location"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true">
-
-    <AutoCompleteTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/location"
-        android:hint="@string/location_hint"
-        android:textColor="@color/textcolor"
-        android:textColorHint="@color/textcolor"
-        android:layout_margin="5dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edittext"
-        android:hint="@string/title_hint"
-        android:textColorHint="@color/textcolor"
-        android:textColor="@color/textcolor"
-        android:layout_margin="5dp"
-        android:layout_below="@+id/location"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/line1"
-        android:layout_below="@+id/edittext"
-        android:layout_margin="5dp"
-        android:orientation="horizontal">
-
-
-        <ImageButton
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/calendar"
-            android:id="@+id/setdate"
-            android:onClick="showDate"
-            android:background="@null"/>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/settime"
-            android:src="@drawable/clock"
-            android:onClick="showTime"
-            android:background="@null"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/line2"
-        android:layout_below="@+id/line1"
-        android:orientation="horizontal"
-        android:layout_margin="15dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/text1"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/textcolor"
-            android:text="Desired Country"
-            android:textStyle="bold"
-            android:textSize="18dp"/>
+            android:id="@+id/line1"
+            android:layout_below="@+id/edittext"
+            android:layout_margin="5dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/text2"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/textcolor"
-            android:text="My Country"
-            android:textStyle="bold"
-            android:textSize="18dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/line3"
-        android:layout_below="@+id/line2"
-        android:orientation="horizontal"
-        android:layout_margin="15dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/clock1"
-            android:layout_weight="1"
-            android:src="@drawable/clock_var"
-            android:contentDescription="Time" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/clock2"
-            android:layout_weight="1"
-            android:src="@drawable/clock_var"
-            android:contentDescription="Time" />
-
-    </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageButton
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/hr_lL"
-                android:layout_below="@+id/line2"
-                android:orientation="horizontal"
-                android:layout_margin="15dp">
+                android:src="@drawable/calendar"
+                android:id="@+id/setdate"
+                android:onClick="showDate"
+                android:background="@null"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/hr1"
-                    android:layout_weight="1"
-                    android:src="@drawable/hr_needle"
-                    android:contentDescription="Time" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/hr2"
-                    android:layout_weight="1"
-                    android:src="@drawable/hr_needle"
-                    android:contentDescription="Time" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageButton
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/min_lL"
-                android:layout_below="@+id/line2"
-                android:orientation="horizontal"
-                android:layout_margin="15dp">
+                android:id="@+id/settime"
+                android:src="@drawable/clock"
+                android:onClick="showTime"
+                android:background="@null"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                    />
+        </RelativeLayout>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/min1"
-                    android:layout_weight="1"
-                    android:src="@drawable/min_needle"
-                    android:contentDescription="Time" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/line3"
+            android:layout_below="@+id/line1"
+            android:orientation="horizontal"
+            android:layout_margin="15dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/min2"
-                    android:layout_weight="1"
-                    android:src="@drawable/min_needle"
-                    android:contentDescription="Time" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/line4"
-                android:orientation="horizontal"
-                android:layout_below="@+id/line3"
-                android:layout_margin="5dp">
+                android:id="@+id/clock1"
+                android:layout_weight="1"
+                android:src="@drawable/clock_var"
+                android:contentDescription="Time" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:id="@+id/date1"
-                    android:text="Date"
-                    android:textSize="18dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:id="@+id/date2"
-                    android:text="Date"
-                    android:textSize="18dp"/>
-
-            </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/line5"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="2dp">
-
-        <Button
-            android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clock2"
+                android:layout_weight="1"
+                android:src="@drawable/clock_var"
+                android:contentDescription="Time" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/cancel"
-            android:background="@color/remindercolor"
-            android:text="@string/cancel"
-            android:textColor="#FFFFFF"
-            android:layout_marginRight="2dp"/>
+            android:id="@+id/hr_lL"
+            android:layout_below="@+id/line1"
+            android:orientation="horizontal"
+            android:layout_margin="15dp">
 
-        <Button
-            android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hr1"
+                android:layout_weight="1"
+                android:src="@drawable/hr_needle"
+                android:contentDescription="Time" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hr2"
+                android:layout_weight="1"
+                android:src="@drawable/hr_needle"
+                android:contentDescription="Time" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/save"
-            android:background="@color/remindercolor"
-            android:text="@string/save"
-            android:textColor="#FFFFFF"
-            android:layout_marginLeft="2dp"/>
-    </LinearLayout>
-</RelativeLayout>
+            android:id="@+id/min_lL"
+            android:layout_below="@+id/line1"
+            android:orientation="horizontal"
+            android:layout_margin="15dp">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/min1"
+                android:layout_weight="1"
+                android:src="@drawable/min_needle"
+                android:contentDescription="Time" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/min2"
+                android:layout_weight="1"
+                android:src="@drawable/min_needle"
+                android:contentDescription="Time" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/line2"
+            android:layout_below="@+id/min_lL"
+            android:orientation="horizontal"
+            android:layout_margin="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text1"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/textcolor"
+                android:text="Desired Country"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text2"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/textcolor"
+                android:text="My Country"
+                android:textStyle="bold"
+                android:textSize="18dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/line4"
+            android:orientation="horizontal"
+            android:layout_below="@+id/line2"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/date1"
+                android:text="Date"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/date2"
+                android:text="Date"
+                android:textSize="18dp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/line5"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="2dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/cancel"
+                android:background="#606060"
+                android:text="@string/cancel"
+                android:textColor="#FFFFFF"
+                android:layout_marginRight="2dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/save"
+                android:background="#606060"
+                android:text="@string/save"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="2dp"/>
+        </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

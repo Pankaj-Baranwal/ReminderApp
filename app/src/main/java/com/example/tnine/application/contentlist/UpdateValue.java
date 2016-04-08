@@ -79,6 +79,7 @@ public class UpdateValue extends AppCompatActivity {
     private TextView date2;
     private Button cancel;
     private Button save;
+    int id=0;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -101,22 +102,18 @@ public class UpdateValue extends AppCompatActivity {
             databaseAdapter = new DBManipulation(getApplicationContext());
             databaseAdapter.open();
 
-            int id= getIntent().getIntExtra("ID",0);
+            id= getIntent().getIntExtra("ID",0);
             if(id==0)
                 return;
 
             Cursor cursor= databaseAdapter.getSinlgeEntry(id);
 
             this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
-            String place_txt=cursor.getString(cursor.getColumnIndex(DBManipulation.COUNTRY));
-            Date time_txt=new Date(Long.parseLong(cursor.getString(cursor.getColumnIndex(DBManipulation.TIMESCHEDULED))));
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            dateFormat.format(time_txt);
             String title_txt=cursor.getString(cursor.getColumnIndex(DBManipulation.TITLE));
-            Calendar cl = Calendar.getInstance();
-            long time = cl.getTimeInMillis();
-            String dates=getDate(time);
+            String place_txt=cursor.getString(cursor.getColumnIndex(DBManipulation.COUNTRY));
+            Date time_date=new Date(Long.parseLong(cursor.getString(cursor.getColumnIndex(DBManipulation.TIMESCHEDULED))));
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            String dates=dateFormat.format(time_date);
             float hrr=Float.parseFloat(dates.substring(dates.indexOf(" "), dates.length() - 6));
             if (hrr<12)
                 hrr=hrr*30;
@@ -124,7 +121,8 @@ public class UpdateValue extends AppCompatActivity {
                 hrr=(hrr-12)*30;
             min2.setRotation(Float.parseFloat(dates.substring(dates.length() - 5, dates.length() - 3)) * 6);
             hr2.setRotation((Float.parseFloat(dates.substring(dates.length() - 5, dates.length() - 3)) * 0.5f)+hrr);
-            date2.setText(getDate(time).substring(0, dates.indexOf(" ")));
+            date2.setText(dates.substring(0, dates.indexOf(" ")));
+            title.setText(title_txt);
 
             openButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
@@ -205,13 +203,14 @@ public class UpdateValue extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 // Get the user's selected place from the Intent.
                 Place place = PlaceAutocomplete.getPlace(this, data);
-                //Log.i(TAG, "Place Selected: " + place.getName());
+                Log.e("TAG", "Place Selected: " + place.getName());
 
                 // Format the place's details and display them in the TextView.
                 String pName=(place.getName()).toString();
                 String pId= place.getId();
                 pAdd=(place.getAddress()).toString();
                 text1.setText(pName);
+
 
                 //Get Place Details using Place ID
                 try {
@@ -231,7 +230,6 @@ public class UpdateValue extends AppCompatActivity {
                         lon=location.optDouble("lng");
 
                         //Toast.makeText(getApplicationContext(), lat+" "+lon, Toast.LENGTH_SHORT).show();
-
                         getTimeZone();
                     }
                     catch (JSONException e)
@@ -367,7 +365,6 @@ private TimePickerDialog.OnTimeSetListener mTimeSetListener =
     public  String getDate(long timestamp) {
         try{
             Calendar calendar = Calendar.getInstance();
-            TimeZone tz = TimeZone.getDefault();
             calendar.setTimeInMillis(timestamp);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date currenTimeZone = calendar.getTime();
@@ -503,7 +500,7 @@ private TimePickerDialog.OnTimeSetListener mTimeSetListener =
         databaseAdapter.open();
         //TODO: Enter correct entry and improve here for listview
         String str_date = "" + year + "-" + (month + 1) + "-" + day + " " + hour + ":" + minute + ":00";
-        databaseAdapter.insertEntry(rTitle, pAdd, repeat, alarmOffset);
+        databaseAdapter.updateEntry(rTitle, pAdd, repeat, alarmOffset, id);
         Log.e("CURReNT TIME", str_date);
         databaseAdapter.close();
 
